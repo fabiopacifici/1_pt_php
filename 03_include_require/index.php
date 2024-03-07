@@ -1,15 +1,27 @@
 <?php
 
 /* include/require | include_once/require_once  */
-
+session_start();
 include  __DIR__ .  '/layouts/head.php';
 require_once __DIR__ . '/db/db.php';
+
+
+if (isset($_SESSION['username'])) {
+  $name =  $_SESSION['username'];
+}
+
+
+
+
 ?>
 
 <main class="min-vh-100">
   <div class="p-5 mb-4 bg-light rounded-3">
-    <div class="container-fluid py-5">
-      <h1 class="display-5 fw-bold">Welcome</h1>
+    <div class="container py-5">
+      <h1 class="display-5 fw-bold">
+        Welcome
+        <?php echo $name; ?>
+      </h1>
       <p class="col-md-8 fs-4">
         Using a series of utilities, you can create this jumbotron, just
         like the one in previous versions of Bootstrap. Check out the
@@ -30,7 +42,7 @@ require_once __DIR__ . '/db/db.php';
         <?php foreach ($posts as $post) : ?>
           <div class="col">
             <div class="card">
-              <img class="card-img-top" src="<?= $post['img']?>" alt="">
+              <img class="card-img-top" src="<?= $post['img'] ?>" alt="">
               <div class="card-body">
                 <h3><?= $post['title'] ?></h3>
               </div>
